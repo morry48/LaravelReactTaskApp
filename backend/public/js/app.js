@@ -7171,7 +7171,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
+__webpack_require__(/*! ./pages/Example */ "./resources/js/pages/Example.js");
 
 /***/ }),
 
@@ -7219,10 +7219,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Example.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Example.js ***!
-  \********************************************/
+/***/ "./resources/js/pages/Example.js":
+/*!***************************************!*\
+  !*** ./resources/js/pages/Example.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7254,7 +7254,7 @@ function Example() {
             children: "React\u5C0E\u5165\u3067\u304D\u305F\u308F\u306A\uFF1F\uFF1F"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "card-body",
-            children: "I'm an example component!"
+            children: "pages\u4E0B\u306B\u79FB\u52D5\u51FA\u6765\u305F\uFF1F\uFF1F"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, {
             color: "secondary",
             variant: "contained",
