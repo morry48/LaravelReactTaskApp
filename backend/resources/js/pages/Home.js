@@ -27,6 +27,20 @@ const useStyles = makeStyles((theme) => createStyles({
 //ヘッダーのコンテンツ用の配列定義
 const headerList = ['名前', 'タスク内容', '編集', '完了'];
 
+let rows = [
+    {
+        name: "モーリー",
+        content: "肩トレ",
+        editBtn: <Button color="secondary" variant="contained">編集</Button>,
+        deleteBtn: <Button color="primary" variant="contained">完了</Button>,
+    },{
+        name: "ドンキーコング",
+        content: "バナナ補給",
+        editBtn: <Button color="secondary" variant="contained">編集</Button>,
+        deleteBtn: <Button color="primary" variant="contained">完了</Button>,
+    },
+];
+
 function Home() {
     //定義したスタイルを利用するための設定
     const classes = useStyles();
@@ -50,19 +64,16 @@ function Home() {
                                         </TableRow>
                                     </TableHead>
                                      {/* ボディ部分 */}
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell align="center">モーリー</TableCell>
-                                            <TableCell align="center">肩トレ</TableCell>
-                                            <TableCell align="center"><Button color="secondary" variant="contained">編集</Button></TableCell>
-                                            <TableCell align="center"><Button color="primary" variant="contained">完了</Button></TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell align="center">ドンキーコング</TableCell>
-                                            <TableCell align="center">バナナ補給</TableCell>
-                                            <TableCell align="center"><Button color="secondary" variant="contained">編集</Button></TableCell>
-                                            <TableCell align="center"><Button color="primary" variant="contained">完了</Button></TableCell>
-                                        </TableRow>
+                                     <TableBody>
+                                        {rows.map((row, index) => (
+                                            <TableRow key={index}>
+                                                {Object.keys(row).map(function(key, i) {
+                                                    return(
+                                                        <TableCell align="center" key={i}>{row[key]}</TableCell>
+                                                    );
+                                                })}
+                                            </TableRow>
+                                        ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
