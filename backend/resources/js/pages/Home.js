@@ -3,6 +3,8 @@ import { Button, Card } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import MainTable from '../components/MainTable';
 import axios from 'axios';
+import PostFrom from '../components/PostFrom';
+
 //スタイルの定義
 const useStyles = makeStyles((theme) => createStyles({
     card: {
@@ -21,6 +23,9 @@ function Home() {
     //postsの状態を管理する
     const [posts, setPosts] = useState([]);
 
+    //フォームの入力値を管理するステートの定義
+    const [formData, setFormData] = useState({name:'', content:''});
+
     //画面に到着したらgetPostsDataを呼ぶ
     useEffect(() => {
         getPostsData();
@@ -35,6 +40,39 @@ function Home() {
             })
             .catch(() => {
                 console.log('通信に失敗しました');
+            });
+    }
+
+    //入力がされたら（都度）
+    function inputChange(e) {
+        console.log(e);
+        const key = e.target.name;
+        const value = e.target.value;
+        formData[key] = value;
+        let data = Object.assign({}, formData);
+        setFormData(data);
+    }
+
+    const createPost = async() => {
+        //空だと弾く
+        if(formData == ''){
+            return;
+        }
+        //入力値を投げる
+        await axios
+            .post('/api/post/create', {
+                name: formData.name,
+                content: formData.content
+            })
+            .then((res) => {
+                //戻り値をtodosにセット
+                const tempPosts = posts
+                tempPosts.push(res.data);
+                setPosts(tempPosts)
+                setFormData('');
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
@@ -56,6 +94,9 @@ function Home() {
                 <div className="col-md-10">
                     <div className="card">
                         <h1>タスク管理</h1>
+                        <Card className={classes.card}>
+                            <PostFrom data={formData} btnFunc={createPost} inputChange={inputChange} />
+                        </Card>
                         <Card className={classes.card}>
                             {/* テーブル部分の定義 */}
                             <MainTable headerList={headerList} rows={rows} />
