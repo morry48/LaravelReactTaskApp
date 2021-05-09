@@ -29,12 +29,20 @@ class PostController extends Controller
         return $post;
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $post = Post::find($request->id);
         $post->name = $request->name;
         $post->content = $request->content;
         $post->save();
         return response()->json($post, 200);
+    }
 
+    public function delete(Request $request)
+    {
+        $post =  Post::find($request->id);
+        $post->delete();
+        $posts = Post::all();
+        return $posts;
     }
 }

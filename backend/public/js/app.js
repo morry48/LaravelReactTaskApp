@@ -16823,6 +16823,8 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default
 var headerList = ['名前', 'タスク内容', '編集', '完了'];
 
 function Home() {
+  var _this = this;
+
   //定義したスタイルを利用するための設定
   var classes = useStyles(); //postsの状態を管理する
 
@@ -16902,6 +16904,36 @@ function Home() {
     return function createPost() {
       return _ref.apply(this, arguments);
     };
+  }();
+
+  var deletePost = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(post) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().post('/api/delete', {
+                id: post.id
+              }).then(function (res) {
+                _this.setState({
+                  posts: res.posts
+                });
+              })["catch"](function (error) {
+                console.log(error);
+              });
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function deletePost(_x) {
+      return _ref2.apply(this, arguments);
+    };
   }(); //空配列として定義する
 
 
@@ -16920,6 +16952,10 @@ function Home() {
       deleteBtn: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
         color: "primary",
         variant: "contained",
+        href: "/",
+        onClick: function onClick() {
+          return deletePost(post);
+        },
         children: "\u5B8C\u4E86"
       })
     });
